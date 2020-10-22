@@ -6,3 +6,4 @@ require_all 'lib'
 require_all 'app'
 require 'tty-prompt'
 require "artii"
+ActiveRecord::Base.logger = nil
