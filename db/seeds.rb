@@ -1,9 +1,10 @@
 User.destroy_all
 Plant.destroy_all
+PlantMarriage.destroy_all
+
 
 david = User.create(email_address: "David@email.com", username: "Itchy", password: "password")
 brian = User.create(email_address: "Brian@email.com", username: "Scratchy", password: "password")
-
 
 
 
@@ -88,3 +89,14 @@ plants = [
 ]
 
 Plant.create(plants)
+
+chrysanthemum = Plant.first
+hoya_heart = Plant.second
+juniper_bonsai = Plant.third
+meyer_lemon = Plant.fourth
+majesty_palm = Plant.fifth
+
+PlantMarriage.create(user: david, plant: juniper_bonsai, helpful_hints: " ")
+PlantMarriage.create(user: david, plant: hoya_heart, helpful_hints: " ")
+PlantMarriage.create(user: brian, plant: meyer_lemon, helpful_hints: " ")
+PlantMarriage.create(user: brian, plant: majesty_palm, helpful_hints: " ")
