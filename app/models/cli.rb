@@ -21,7 +21,7 @@ class CLI
         elsif welcome == 'Sign up'
             sign_up
         else 
-            puts "Farewell for now"
+            puts "Farewell for now 😁"
         end
     end
     
@@ -43,7 +43,9 @@ def log_in
                 log_in
             end
         else
+            system("clear")
             puts "Sorry, username does not exist"
+            
             greeting
         end
     end
@@ -88,7 +90,7 @@ def log_in
             my_plants 
         elsif choose == "Available Plants"
             available_plants
-        else
+        elsif
             puts "Invalid Entry".colorize(:red)
         end
     end
@@ -101,90 +103,62 @@ def log_in
                 x = p_marry.plant_id
                 y = p_marry.helpful_hints
                 @plant = Plant.all.find(x)
-                puts "#{@plant.name}, your helpful hint is #{y}"
+                puts " "
+                puts "#{@plant.name}, to take care of them follow these instuctions : #{@plant.caring_instructions}. Your helpful hint is #{y}"
             end
         end
+        puts " "
         puts "How will you like to manage your plants today"
         puts "Enter 1 if you would like to share your helpful hints"
         puts "Enter 2 if you have any plant deaths to declare 😔"
+        puts "Enter 3 if you would like to Exit"
         choice = gets.chomp
         case choice
             when "1"
                 add_hint
             when "2"
                 plant_death
+            when "3"
+                puts "Ta-ta for now 😁 "
             else
                 puts "Invalid Entry".colorize(:red)
                 my_plants
             end
     end
 
-        # def available_plants 
-        #     prompt = TTY::Prompt.new 
-        #     @@input = prompt.select("What plants would you like to add?", [
-        #         'Chrysanthemum',
-        #         'Hoya Heart',
-        #         'Juniper Bonsai',
-        #         'Meyers Lemon Tree',
-        #         'Majesty Palm',
-        #         'Dieffenbachia',
-        #         'Monstera Deliciosa',
-        #         'Sansevieria',
-        #         'Red Anthurium Plant',
-        #         'Golden Gate Ficus Bonsai'
-        #         ])
-        # end
+        def available_plants 
+            prompt = TTY::Prompt.new 
+            @@input = prompt.select("Here's a list of all the plants you can buy!", [
+                'Chrysanthemum',
+                'Hoya Heart',
+                'Juniper Bonsai',
+                'Meyers Lemon Tree',
+                'Majesty Palm',
+                'Dieffenbachia',
+                'Monstera Deliciosa',
+                'Sansevieria',
+                'Red Anthurium Plant',
+                'Golden Gate Ficus Bonsai',
+                'Go back'
+                ])
+                available_plants_choice
+        end
 
-        # def self.available_plants_choice 
-        #     case @@input 
-        #     when 'Chrysanthemum'
+        def available_plants_choice 
+             case @@input 
+            when 'Go back'
+                main_menu
+            end
+        end
 
-        # end
-
-    # def available_plants 
-    #    prompt = TTY::Prompt.new
-    #    choice = prompt.select("What plants would you like to add?") do |menu|
-    #        menu.choice 'Chrysanthemum'
-    #        menu.choice 'Hoya Heart'
-    #        menu.choice 'Juniper Bonsai'
-    #        menu.choice 'Meyers Lemon Tree'
-    #        menu.choice 'Majesty Palm'
-    #        menu.choice 'Dieffenbachia'
-    #        menu.choice 'Monstera Deliciosa'
-    #        menu.choice 'Sansevieria'
-    #        menu.choice 'Red Anthurium Plant'
-    #        menu.choice 'Golden Gate Ficus Bonsai'
-    #    end
+   
     
-    #     if choice == 'Chrysanthemum'
-    #          add_plant ('Chrysanthemum')
-    #     if choice == 'Hoya Heart'
-    #          add_plant ('Hoya Heart')
-    #     if choice == 'Juniper Bonsai' 
-    #          add_plant ('Juniper Bonsai')  
-    #     if choice == 'Meyers Lemon Tree'
-    #          add_plant ('Meyers Lemon Tree')
-    #     if choice == 'Majesty Palm'
-    #          add_plant ('Majesty Palm')
-    #     if choice == 'Dieffenbachia'
-    #          add_plant ('Dieffenbachia')
-    #     if choice == 'Monstera Deliciosa'
-    #          add_plant ('Monstera Deliciosa')
-    #     if choice =='Sansevieria'
-    #          add_plant ('Sansevieria')
-    #     if choice == 'Red Anthurium Plant'
-    #          add_plant ('Red Anthurium Plant')
-    #     if choice == 'Golden Gate Ficus Bonsai'
-    #          add_plant ('Golden Gate Ficus Bonsai')
-    #    end
-
     
-
     def add_hint
-        puts "What Plant would you like to add a hint to?"
+        puts "What Plant would you like to tell fellow Plant Moms about?"
         plant_name = gets.chomp
         plant = Plant.find_by(name: plant_name)
-        user_plant = PlantMarriage.find_by(user_id: @this_user)
+        user_plant = PlantMarriage.find_by(user_id: @this_user, plant_id: plant.id)
         if !user_plant
             puts "I'm sorry, you dont own this plant".colorize(:red)
             puts "Would you like to try again?"
@@ -215,7 +189,7 @@ def log_in
             when "2"
                 main_menu
             else 
-                puts "Invalid Entry".colorize(:red)
+                # puts "Invalid Entry".colorize(:red)
                 main_menu
             end
         end
