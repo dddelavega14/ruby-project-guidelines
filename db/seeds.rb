@@ -24,7 +24,7 @@ red_anthurium = Plant.create(name: "Red Anthurium Plant", type_of_plant: "House 
 golden_gate_ficus = Plant.create(name: "Golden Gate Ficus Bonsai", type_of_plant: "Tree", size: "Medium", caring_instructions: "Wet soil thoroughly every 2 or 3 days. Base tray not only catches excess water but provides the humidity your bonsai craves. Place near a window for some bright sunlight every day.", alive: true)
 
 
-PlantMarriage.create(user: david, plant: juniper_bonsai, helpful_hints: " ")
+PlantMarriage.create(user: david, plant: juniper_bonsai, helpful_hints: "")
 PlantMarriage.create(user: david, plant: hoya_heart, helpful_hints: " ")
 PlantMarriage.create(user: brian, plant: meyer_lemon, helpful_hints: " ")
 PlantMarriage.create(user: brian, plant: majesty_palm, helpful_hints: " ")
